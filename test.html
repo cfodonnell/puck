@@ -16,9 +16,9 @@
     try {
       var j = JSON.parse(line);
       console.log("Received JSON: ",j);
-      elements.accel_x.setValue(j.accel.acc.x*100);
-      elements.accel_y.setValue(j.accel.acc.y*100);
-      elements.accel_z.setValue(j.accel.acc.z*100);
+      elements.accel_x.setValue(j.accel.acc.x);
+      elements.accel_y.setValue(j.accel.acc.y);
+      elements.accel_z.setValue(j.accel.acc.z);
     } catch(e) {
       console.log("Received: ",line);
     }
@@ -63,8 +63,8 @@
   var elements = {
     heading : TD.label({x:10,y:10,width:190,height:50,label:"My Dashboard"}),
     accel_x : TD.gauge({x:10,y:70,width:190,height:220,label:"Accel (x)",value:0,min:0,max:10000}),
-    accel_y : TD.gauge({x:10,y:70,width:190,height:220,label:"Accel (y)",value:0,min:0,max:10000}),
-    accel_z : TD.gauge({x:10,y:70,width:190,height:220,label:"Accel (z)",value:0,min:0,max:10000}),
+    accel_y : TD.gauge({x:210,y:70,width:190,height:220,label:"Accel (y)",value:0,min:0,max:10000}),
+    accel_z : TD.gauge({x:410,y:70,width:190,height:220,label:"Accel (z)",value:0,min:0,max:10000}),
     modal: TD.modal({x:10,y:10,width:190,height:430,label:"Click to connect",onchange:connectDevice})
   }
   for (var i in elements)
