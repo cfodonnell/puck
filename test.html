@@ -69,6 +69,41 @@
   }
   for (var i in elements)
     document.body.appendChild(elements[i]);
+   
+   
+  function invokeAPI(key) {
+   const https = require('https');
+
+   const options = {
+     hostname: 'https://67n50lqe23.execute-api.us-east-2.amazonaws.com/test',
+     path: '/getconfig',
+     method: 'GET',
+     headers: {
+       'x-api-key': key
+     }
+   };
+
+   const req = https.request(options, res => {
+     console.log(`statusCode: ${res.statusCode}`);
+
+     res.on('data', d => {
+       process.stdout.write(d);
+     });
+   });
+
+   req.on('error', error => {
+     console.error(error);
+   });
+
+   req.end();
+  }
   </script>
+
+  <form>
+  <label for="api-key">API Key:</label>
+  <input type="text" id="api-key" name="api-key">
+  <br><br>
+  <input type="button" value="Invoke API" onclick="invokeAPI(document.getElementById('api-key'))">
+</form>
  </body>
 </html>
